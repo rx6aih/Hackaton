@@ -27,7 +27,13 @@ const Navbar = function(){
                             <Link to='/home'>Главная</Link>
                         </CoolButton>
                         <CoolButton bg={bg}>
-                            <Link to='/map'>Карта</Link>
+                            <Link to='/report'>Сообщить</Link>
+                        </CoolButton>
+                        <CoolButton bg={bg}>
+                            <Link to='/analytic'>Аналитика</Link>
+                        </CoolButton>
+                        <CoolButton bg={bg}>
+                            <Link to='/admin'>Панель</Link>
                         </CoolButton>
                     </div>
                     <CoolButton bg={bg} onClick={logout}>Выйти</CoolButton>
