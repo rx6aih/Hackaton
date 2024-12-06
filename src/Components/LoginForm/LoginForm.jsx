@@ -1,5 +1,5 @@
 import React from 'react';
-import TextBox from "../UI/TextBox/TextBox.jsx";
+import TextBox from "../UI/Text/TextBox.jsx";
 import CoolButton from "../UI/CoolButton/CoolButton.jsx";
 
 const SignUpForm = () => {

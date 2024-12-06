@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    background: rgb(239, 239, 239);
+    background: rgb(243, 243, 243);
     min-height: 100vh;
     font-family: "sans-serif" ;
     margin: 0;

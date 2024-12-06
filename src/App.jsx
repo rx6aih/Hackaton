@@ -13,7 +13,7 @@ function App() {
         }
     },[])
   return (
-      <div className={"w-full h-fit flex flex-col items-center justify-center"} style={{backgroundImage: `url(/home/shmi/Hack/RoadsFrontend/src/Images/greenPattern1.jpg)`}}>
+      <div className={"w-full h-fit flex flex-col items-center justify-center"}>
               <AuthContext.Provider value={{
                   isAuthorized,
                   setIsAuthorized,

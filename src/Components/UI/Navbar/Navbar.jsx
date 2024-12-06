@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import {AuthContext} from "../../../context";
 import CoolButton from "../CoolButton/CoolButton.jsx";
 import SignUpForm from "../../LoginForm/LoginForm.jsx";
+import CoolLink from "../CoolLink/CoolLink.jsx";
 const Navbar = function(){
     const {isAuthorized, setIsAuthorized} = useContext(AuthContext);
-    const logout = event =>{
+    const logout = () =>{
         setIsAuthorized(false);
         localStorage.removeItem('auth');
+        console.log(isAuthorized);
     }
 
     const isAuth = useMemo(() =>{
-        console.log(!isAuthorized);
+        console.log(isAuthorized);
         return isAuthorized;
     },[isAuthorized]);
 
@@ -24,16 +26,16 @@ const Navbar = function(){
                     className='w-[70%] h-20 p-5 flex mt-5 flex-row justify-between border-2 border-gray-100 bg-white shadow-md rounded-3xl'>
                     <div className='flex flex-row'>
                         <CoolButton bg={bg}>
-                            <Link to='/home'>Главная</Link>
+                            <CoolLink linkTo={"home"} title={"Главная"}/>
                         </CoolButton>
                         <CoolButton bg={bg}>
-                            <Link to='/report'>Сообщить</Link>
+                            <CoolLink linkTo={"report"} title={"Сообщить"}/>
                         </CoolButton>
                         <CoolButton bg={bg}>
-                            <Link to='/analytic'>Аналитика</Link>
+                            <CoolLink linkTo={"analytic"} title={"Аналитика"}/>
                         </CoolButton>
                         <CoolButton bg={bg}>
-                            <Link to='/admin'>Панель</Link>
+                            <CoolLink linkTo={"admin"} title={"Панель"}/>
                         </CoolButton>
                     </div>
                     <CoolButton bg={bg} onClick={logout}>Выйти</CoolButton>
@@ -51,7 +53,7 @@ const Navbar = function(){
                         </CoolButton>
                     </div>
                     <CoolButton bg={bg}>
-                        <Link to='/home'>Главная</Link>
+                        <CoolLink linkTo={"home"} title={"Главная"}/>
                     </CoolButton>
                 </div>
             </div>
