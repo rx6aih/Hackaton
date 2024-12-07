@@ -4,13 +4,14 @@ import Select from "../Components/UI/Select/Select.jsx";
 import TextArea from "../Components/UI/Text/TextArea.jsx";
 import CoolButton from "../Components/UI/CoolButton/CoolButton.jsx";
 import {placeGet, placePost, postReport} from "../Services/OurApi/index.js";
+import usePlaces from "../Hooks/usePlaces.jsx";
 
 const Report = () => {
     const [report, setReport] = useState({location_id:"",title:"",text:""});
     const [place, setPlace] = useState({title:""})
-    const allPlaces = placeGet();
+    const some = placeGet();
+    const [allPlaces, setAllPlaces] = useState([{title:"test"},placeGet()]);
     console.log(allPlaces);
-    console.log(report)
     const createReport = (newReport) => {
         var response = postReport(report);
         console.log(response);
@@ -23,21 +24,7 @@ const Report = () => {
         createReport(newReport);
         setReport({location_id:"",title:"",text:""});
     }
-
-    const createPlace = (newPlace) => {
-        var response = placePost(newPlace);
-        console.log(response);
-
-    }
-    const addPlace = (e) => {
-        e.preventDefault();
-        const newPlace = {
-            ...place,
-        }
-        createPlace(newPlace);
-        setPlace({title: ""});
-    }
-
+    const places = usePlaces(allPlaces, place);
 
     return (
         <form className={"flex flex-col w-[60%] h-[100vh] items-center mt-10 rounded-lg "}>
@@ -48,11 +35,7 @@ const Report = () => {
                 <div className={"flex flex-row w-[95%] p-2"}>
                     <div className={"mt-auto mr-10"}>
                         <Select value={report.location} onChange={(value) => setReport({...report,location_id:Date.now().toString()})}
-                                options={[
-                                    {location_id: "test", name: "test"},
-                                    {location_id: "test", name: "test"},
-                                    {location_id: "test", name: "test"},
-                                ]}
+                                options={allPlaces}
                                 defaultOption={"Выберите место"}/>
                     </div>
 
@@ -62,7 +45,7 @@ const Report = () => {
                                      onChange={e => {setPlace({...place,title:e.target.value})}}/>
                         </div>
                         <div className={"flex mt-5 justify-center items-center"}>
-                            <CoolButton children={"Добавить"} onClick={e=>addPlace(e)}/>
+                            <CoolButton children={"Добавить"} onClick={e=>setAllPlaces([...allPlaces,{title:e.value}])}/>
                         </div>
                     </div>
                 </div>

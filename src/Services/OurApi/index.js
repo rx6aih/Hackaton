@@ -22,6 +22,7 @@ export const placePost = async(title) =>{
      axios.get(url)
          .then(response => {
              console.log(response.data);
+             return response.data;
          })
      .catch(error => {
          console.error(error);
