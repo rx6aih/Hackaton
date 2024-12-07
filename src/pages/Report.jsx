@@ -3,7 +3,7 @@ import TextBox from "../Components/UI/Text/TextBox.jsx";
 import Select from "../Components/UI/Select/Select.jsx";
 import TextArea from "../Components/UI/Text/TextArea.jsx";
 import CoolButton from "../Components/UI/CoolButton/CoolButton.jsx";
-import {placeGet, placePost, postReport} from "../Services/OurApi/index.js";
+import {placeGet, placePost, reportPost} from "../Services/OurApi/index.js";
 import usePlaces from "../Hooks/usePlaces.jsx";
 
 const Report = () => {
@@ -27,7 +27,7 @@ const Report = () => {
 
     console.log(allPlaces)
     const createReport = (newReport) => {
-        var response = postReport(report);
+        var response = reportPost(report);
         console.log(response);
     }
     const addReport = (e) => {
@@ -37,6 +37,19 @@ const Report = () => {
         }
         createReport(newReport);
         setReport({location_id:"",title:"",text:""});
+    }
+
+    const createPlace = (newPlace) => {
+        var response = placePost(newPlace);
+        console.log(response);
+    }
+    const addPlace = (e) => {
+        e.preventDefault();
+        const newPlace = {
+            ...place,
+        }
+        createPlace(newPlace);
+        setPlace({title:""});
     }
 
     return (
@@ -58,7 +71,7 @@ const Report = () => {
                                      onChange={e => {setPlace({...place,title:e.target.value})}}/>
                         </div>
                         <div className={"flex mt-5 justify-center items-center"}>
-                            <CoolButton children={"Добавить"} onClick={e=>setAllPlaces([...allPlaces,{title:e.value}])}/>
+                            <CoolButton children={"Добавить"} onClick={addPlace}/>
                         </div>
                     </div>
                 </div>
