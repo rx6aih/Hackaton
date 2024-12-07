@@ -9,11 +9,9 @@ const Navbar = function(){
     const logout = () =>{
         setIsAuthorized(false);
         localStorage.removeItem('auth');
-        console.log(isAuthorized);
     }
 
     const isAuth = useMemo(() =>{
-        console.log(isAuthorized);
         return isAuthorized;
     },[isAuthorized]);
 

@@ -4,6 +4,7 @@ import {AuthContext} from "./context/index.js";
 import {BrowserRouter} from "react-router-dom";
 import Navbar from "./Components/UI/Navbar/Navbar.jsx";
 import AppRouter from "./Components/AppRouter.jsx";
+import Camera from "./Components/Camera/Camera.jsx";
 
 function App() {
     const [isAuthorized, setIsAuthorized] = useState(true);
@@ -21,6 +22,7 @@ function App() {
                   <BrowserRouter>
                       <Navbar/>
                           <AppRouter/>
+                      <Camera/>
                   </BrowserRouter>
               </AuthContext.Provider>
       </div>

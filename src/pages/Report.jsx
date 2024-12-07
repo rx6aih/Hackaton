@@ -3,7 +3,7 @@ import TextBox from "../Components/UI/Text/TextBox.jsx";
 import Select from "../Components/UI/Select/Select.jsx";
 import TextArea from "../Components/UI/Text/TextArea.jsx";
 import CoolButton from "../Components/UI/CoolButton/CoolButton.jsx";
-import {postReport} from "../Services/OurApi/index.js";
+import {placePost, postReport} from "../Services/OurApi/index.js";
 
 const Report = () => {
     const [report, setReport] = useState({location_id:"",title:"",text:""});
@@ -12,7 +12,6 @@ const Report = () => {
     const createReport = (newReport) => {
         var response = postReport(report);
         console.log(response);
-
     }
     const addReport = (e) => {
         e.preventDefault();
@@ -24,7 +23,7 @@ const Report = () => {
     }
 
     const createPlace = (newPlace) => {
-        var response = postReport(newPlace);
+        var response = placePost(newPlace);
         console.log(response);
 
     }

@@ -42,7 +42,7 @@ const Analytic = () => {
                         <th className="border border-gray-200 px-4 py-2 text-left">Инциденты</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={"bg-zinc-200"}>
                     {
                         regionReports.map((region, index) => (
                             <tr key={index} className="hover:bg-gray-50">
