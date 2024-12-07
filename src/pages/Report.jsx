@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import TextBox from "../Components/UI/Text/TextBox.jsx";
 import Select from "../Components/UI/Select/Select.jsx";
 import TextArea from "../Components/UI/Text/TextArea.jsx";
@@ -9,9 +9,23 @@ import usePlaces from "../Hooks/usePlaces.jsx";
 const Report = () => {
     const [report, setReport] = useState({location_id:"",title:"",text:""});
     const [place, setPlace] = useState({title:""})
-    const some = placeGet();
-    const [allPlaces, setAllPlaces] = useState([{title:"test"},placeGet()]);
-    console.log(allPlaces);
+    const [allPlaces, setAllPlaces] = useState([]);
+
+    useEffect(() => {
+        const fetchPlaces = async () => {
+            try {
+                const places = await placeGet(); // Используем await!
+                setAllPlaces(places); // Обновляем состояние
+            } catch (error) {
+                console.error("Ошибка при получении данных:", error);
+                //Обработка ошибки, например, вывод сообщения об ошибке пользователю
+            }
+        };
+
+        fetchPlaces();
+    }, []);
+
+    console.log(allPlaces)
     const createReport = (newReport) => {
         var response = postReport(report);
         console.log(response);
@@ -24,7 +38,6 @@ const Report = () => {
         createReport(newReport);
         setReport({location_id:"",title:"",text:""});
     }
-    const places = usePlaces(allPlaces, place);
 
     return (
         <form className={"flex flex-col w-[60%] h-[100vh] items-center mt-10 rounded-lg "}>
@@ -34,7 +47,7 @@ const Report = () => {
                 </div>
                 <div className={"flex flex-row w-[95%] p-2"}>
                     <div className={"mt-auto mr-10"}>
-                        <Select value={report.location} onChange={(value) => setReport({...report,location_id:Date.now().toString()})}
+                        <Select value={report.location} onChange={(value) => setReport({...report,location_id:value})}
                                 options={allPlaces}
                                 defaultOption={"Выберите место"}/>
                     </div>
@@ -51,18 +64,18 @@ const Report = () => {
                 </div>
                 <div className={"w-[95%] p-2"}>
                     <Select value={report.type} onChange={(value) => setReport({...report,type:value})} options={[
-                        {value: "dtp", name: "ДТП"},
-                        {value: "roadwork", name: "Дорожные работы"},
-                        {value: "zator", name: "Затор"},
-                        {value: "other", name: "Другое"},
+                        {id: "dtp", title: "ДТП"},
+                        {id: "roadwork", title: "Дорожные работы"},
+                        {id: "zator", title: "Затор"},
+                        {id: "other", title: "Другое"},
                     ]}
                             defaultOption={"Выберите проишествие"}
                     />
                 </div>
                 <div className={"w-[95%] p-1 mb-2"}>
                     <TextArea title={"Описание"} description={"введите описание..."}
-                        value={report.description}
-                        onChange={e => {setReport({...report,description:e.target.value})}}
+                              value={report.description}
+                              onChange={e => {setReport({...report,description:e.target.value})}}
                     />
                 </div>
                 <div className={"w-[95%] p-1 mb-2"}>
