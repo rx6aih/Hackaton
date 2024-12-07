@@ -5,7 +5,7 @@ const Select = function({options, defaultOption, value, onChange}){
         <select
             value={value} // Убедитесь, что value соответствует одному из значений в options
             onChange={event => onChange(event.target.value)}
-            className={"bg-white p-2"}
+            className={"bg-white p-2 h-10 w-56"}
         >
             <option value="">{defaultOption}</option>
             {
