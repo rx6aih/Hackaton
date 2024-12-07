@@ -64,10 +64,10 @@ const Report = () => {
                 </div>
                 <div className={"w-[95%] p-2"}>
                     <Select value={report.type} onChange={(value) => setReport({...report,type:value})} options={[
-                        {id: "dtp", title: "ДТП"},
-                        {id: "roadwork", title: "Дорожные работы"},
-                        {id: "zator", title: "Затор"},
-                        {id: "other", title: "Другое"},
+                        {type_inc: "dtp", title: "ДТП"},
+                        {type_inc: "roadwork", title: "Дорожные работы"},
+                        {type_inc: "zator", title: "Затор"},
+                        {type_inc: "other", title: "Другое"},
                     ]}
                             defaultOption={"Выберите проишествие"}
                     />

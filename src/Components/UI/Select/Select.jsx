@@ -10,7 +10,7 @@ const Select = function({options, defaultOption, value, onChange}){
             <option value="">{defaultOption}</option>
             {
                 options.map(option => (
-                    <option key={option.id} value={option.id}>
+                    <option key={option.id ? option.id : option.type_inc} value={option.id ? option.id : option.type_inc}>
                         {option.title}
                     </option>
                 ))
