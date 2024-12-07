@@ -3,11 +3,13 @@ import TextBox from "../Components/UI/Text/TextBox.jsx";
 import Select from "../Components/UI/Select/Select.jsx";
 import TextArea from "../Components/UI/Text/TextArea.jsx";
 import CoolButton from "../Components/UI/CoolButton/CoolButton.jsx";
-import {placePost, postReport} from "../Services/OurApi/index.js";
+import {placeGet, placePost, postReport} from "../Services/OurApi/index.js";
 
 const Report = () => {
     const [report, setReport] = useState({location_id:"",title:"",text:""});
     const [place, setPlace] = useState({title:""})
+    const allPlaces = placeGet();
+    console.log(allPlaces);
     console.log(report)
     const createReport = (newReport) => {
         var response = postReport(report);

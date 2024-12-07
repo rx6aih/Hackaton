@@ -3,10 +3,20 @@ import camera from "/home/shmi/Hack/RoadsFrontend/src/Images/camera.png";
 
 const Camera = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const [address, setAddress] = useState("");
     const toggleForm = (e) => {
         e.preventDefault();
         setIsOpen(!isOpen); // Переключаем состояние
     };
+    const cameraPost = (e) =>{
+        console.log(address);
+        e.preventDefault();
+        if(address.length>0){
+            toggleForm(e);
+            setAddress("");
+        }
+    }
     return (
         <div className={"right-10 bottom-10 fixed w-16"}>
             <button onClick={toggleForm}>
@@ -20,11 +30,14 @@ const Camera = () => {
                             type="text"
                             placeholder="Введите вашу локацию"
                             className="border border-gray-300 rounded p-2 w-full"
+                            value={address}
+                            onChange={e => setAddress(e.target.value)}
                         />
                         <div className={"flex justify-end"}>
                             <button
                                 type="submit"
                                 className="mt-2 bg-green-500 text-white font-bold py-2 px-4 rounded"
+                                onClick={cameraPost}
                             >
                                 Отправить
                             </button>

@@ -12,24 +12,29 @@ const Analytic = () => {
     ])
     return (
         <div className={"flex flex-col mt-10 h-full w-[70%]"}>
-            <div className={"flex h-[100%] items-center"}>
-                <CoolDateTime/>
-                <BarChart
-                    xAxis={[
-                        {
-                            id: 'barCategories',
-                            data: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",],
-                            scaleType: 'band',
-                        },
-                    ]}
-                    series={[
-                        {
-                            data: [1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 5, 1, 2, 3, 1, 2, 4, 4, 2, 1, 1],
-                        },
-                    ]}
-                    width={900}
-                    height={500}
-                />
+            <div className={"flex h-[100%] items-center bg-zinc-50 mb-10 rounded-xl border-2 border-zinc-200 border-solid"}>
+                <div className={"flex ml-12 bg-rose-100"}>
+                    <CoolDateTime/>
+                </div>
+                <div className={"flex ml-16  mt-4 mb-4"}>
+                    <BarChart
+                        xAxis={[
+                            {
+                                id: 'barCategories',
+                                data: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",],
+                                scaleType: 'band',
+                            },
+                        ]}
+                        series={[
+                            {
+                                data: [1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 5, 1, 2, 3, 1, 2, 4, 4, 2, 1, 1],
+                            },
+                        ]}
+                        width={900}
+                        height={500}
+                    />
+                </div>
+
             </div>
 
             <div className="overflow-auto">
