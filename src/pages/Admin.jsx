@@ -9,26 +9,34 @@ const Admin = () => {
         {id:"1",type:"ДТП",place:"ул. Красная",
             description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
             time:" 06.12.2024 13:11", status:true, action:false},
-        {id:"1",type:"ДТП",place:"ул. Красная",
+        {id:"2",type:"ДТП",place:"ул. Красная",
             description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
             time:" 06.12.2024 13:11", status:false, action:true},
-        {id:"1",type:"ДТП",place:"ул. Красная",
+        {id:"13",type:"ДТП",place:"ул. Красная",
             description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
             time:" 06.12.2024 13:11", status:true, action:false},
-        {id:"1",type:"ДТП",place:"ул. Красная",
+        {id:"4",type:"ДТП",place:"ул. Красная",
             description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
             time:" 06.12.2024 13:11", status:false, action:true},
-        {id:"1",type:"ДТП",place:"ул. Красная",
+        {id:"5",type:"ДТП",place:"ул. Красная",
             description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
             time:" 06.12.2024 13:11", status:true, action:false},
-        {id:"1",type:"ДТП",place:"ул. Красная",
+        {id:"6",type:"ДТП",place:"ул. Красная",
             description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
             time:" 06.12.2024 13:11", status:false, action:true},
     ]);
     const [filter, setFilter] = useState(1);
     const filteredIncidents = useIncidents(filter,incidents);
-    const changeStatus = (e) =>{
-
+    const changeStatus = (changingIncident) =>{
+        const updatedIncident = {
+            ...changingIncident,
+            status: !changingIncident.status,
+            action: !changingIncident.action
+        };
+        setIncidents(incidents.map(incident =>
+            incident.id === changingIncident.id ? updatedIncident : incident
+        ));
+        console.log(updatedIncident)
     }
     return (
         <div className={"h-[777px] w-[90%] flex justify-center"}>
@@ -67,7 +75,7 @@ const Admin = () => {
                                                 <td className="border border-gray-200 px-4 py-2">{incident.description}</td>
                                                 <td className="border border-gray-200 px-4 py-2">{incident.time}</td>
                                                 <td className="border border-gray-200 px-4 py-2"><Status status={incident.status}/></td>
-                                                <td className="border border-gray-200 px-4 py-2"><Action action={incident.action}/></td>
+                                                <td className="border border-gray-200 px-4 py-2"><Action action={incident.action} onClick={() =>{changeStatus(incident)}}/></td>
                                             </tr>
                                         )
                                     }

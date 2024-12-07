@@ -25,7 +25,6 @@ const CallButton = () => {
 
                 setDevice(newDevice);
             } catch (error) {
-                console.log(error);
             }
         };
 
