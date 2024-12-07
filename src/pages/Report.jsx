@@ -3,18 +3,23 @@ import TextBox from "../Components/UI/Text/TextBox.jsx";
 import Select from "../Components/UI/Select/Select.jsx";
 import TextArea from "../Components/UI/Text/TextArea.jsx";
 import CoolButton from "../Components/UI/CoolButton/CoolButton.jsx";
+import {postReport} from "../Services/OurApi/index.js";
 
 const Report = () => {
-    const [report, setReport] = React.useState({place:"",type:"",description:""});
-    const createReport = (newReport) => {
-        //api
+    const [report, setReport] = React.useState({location_id:"",title:"",text:""});
+
+    console.log(report)
+    const createReport = () => {
+        var response = postReport(report);
+        console.log(response);
+
     }
     const addReport = (e) => {
         e.preventDefault();
         const newReport = {
             ...report,
         }
-        setReport({place:"",type:"",description:""});
+        setReport({location_id:"",title:"",text:""});
     }
     return (
         <form onSubmit={e =>
@@ -24,10 +29,16 @@ const Report = () => {
                 <div className={"p-5 bg-gray-100 w-full"}>
                     <h1>Сообщить о происшествии</h1>
                 </div>
-                <div className={"w-[95%] p-1"}>
-                    <TextBox title={"Местоположение"} placeholder={"место..."} value={report.place} onChange={e => {setReport({...report, place:e.target.value})}} />
+                <div className={"w-[95%] p-2"}>
+                    <Select value={report.location} onChange={(value) => setReport({...report,location_id:Date.now().toString()})}
+                            options={[
+                                {location_id: "test", name: "test"},
+                                {location_id: "test", name: "test"},
+                                {location_id: "test", name: "test"},
+                            ]}
+                            defaultOption={"Выберите проишествие"}/>
                 </div>
-                <div className={"w-[95%] p-1 pl-2"}>
+                <div className={"w-[95%] p-2"}>
                     <Select value={report.type} onChange={(value) => setReport({...report,type:value})} options={[
                         {value: "dtp", name: "ДТП"},
                         {value: "roadwork", name: "Дорожные работы"},
