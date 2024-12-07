@@ -6,11 +6,12 @@ import CoolButton from "../Components/UI/CoolButton/CoolButton.jsx";
 import {placeGet, placePost, reportPost} from "../Services/OurApi/index.js";
 import usePlaces from "../Hooks/usePlaces.jsx";
 
-const Report = () => {
+const Report = ({height}) => {
     const [report, setReport] = useState({location_id:"",title:"",text:""});
     const [place, setPlace] = useState({title:""})
     const [allPlaces, setAllPlaces] = useState([]);
-
+    console.log(height)
+    if(typeof(height)==='undefined') height = "737";
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
@@ -25,7 +26,6 @@ const Report = () => {
         fetchPlaces();
     }, []);
 
-    console.log(allPlaces)
     const createReport = (newReport) => {
         var response = reportPost(report);
         console.log(response);
@@ -44,7 +44,6 @@ const Report = () => {
         console.log(response);
     }
     const addPlace = (e) => {
-        e.preventDefault();
         const newPlace = {
             ...place,
         }
@@ -53,8 +52,8 @@ const Report = () => {
     }
 
     return (
-        <form className={"flex flex-col w-[60%] h-[100vh] items-center mt-10 rounded-lg "}>
-            <div className={"flex flex-col w-[60%] items-center justify-center bg-gray-200 border-2 border-white border-solid rounded-sm drop-shadow-lg"}>
+        <form className={`flex flex-col w-[45%] items-center mt-10 rounded-lg`} style={{height: `${height}px`}}>
+            <div className={"flex flex-col w-[100%] items-center justify-center bg-gray-200 border-2 border-white border-solid rounded-sm drop-shadow-lg"}>
                 <div className={"p-5 bg-gray-100 w-full"}>
                     <h1>Сообщить о происшествии</h1>
                 </div>

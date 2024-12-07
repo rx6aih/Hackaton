@@ -27,48 +27,53 @@ const Admin = () => {
     ]);
     const [filter, setFilter] = useState(1);
     const filteredIncidents = useIncidents(filter,incidents);
-    return (
-        <div className={"flex w-[80%] h-fit p-4"}>
-            <div className={"flex flex-col w-full justify-center mt-5 p-5 pb-10 bg-gray-100 rounded-xl"}>
-                <div className={"flex justify-center w-full pt-10"}>
-                    <p className={"font-bold text-3xl"}>Панель Администратора</p>
-                </div>
-                <div className={"flex flex-col w-80% h-fit mt-10 border-2 border-solid border-gray-200"}>
-                    <div className={"flex flex-row justify-between p-4 text-2xl font-medium border-b-gray-300 border-solid border-b-2"}>
-                        <p>Управление инцидентами</p>
-                        <Filter setFilter={setFilter}/>
-                    </div>
-                    <div className={"flex flex-row w-full justify-between"}>
+    const changeStatus = (e) =>{
 
-                        <div className={"overflow-auto"}>
-                            <table className="min-w-full border-collapse border border-gray-200">
-                                <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="border border-gray-200 px-4 py-2 text-left max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">ID</th>
-                                    <th className="border border-gray-200 px-4 py-2 text-left">Тип</th>
-                                    <th className="border border-gray-200 px-4 py-2 text-left">Местоположение</th>
-                                    <th className="border border-gray-200 px-4 py-2 text-left">Описание</th>
-                                    <th className="border border-gray-200 px-4 py-2 text-left">Время</th>
-                                    <th className="border border-gray-200 px-4 py-2 text-left">Статус</th>
-                                    <th className="border border-gray-200 px-4 py-2 text-left">Действия</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    filteredIncidents.map(incident =>
-                                        <tr className="hover:bg-gray-50">
-                                            <td className="border border-gray-200 px-4 py-2">{incident.id}</td>
-                                            <td className="border border-gray-200 px-4 py-2">{incident.type}</td>
-                                            <td className="border border-gray-200 px-4 py-2 max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">{incident.place}</td>
-                                            <td className="border border-gray-200 px-4 py-2">{incident.description}</td>
-                                            <td className="border border-gray-200 px-4 py-2">{incident.time}</td>
-                                            <td className="border border-gray-200 px-4 py-2"><Status status={incident.status}/></td>
-                                            <td className="border border-gray-200 px-4 py-2"><Action action={incident.action}/></td>
-                                        </tr>
-                                    )
-                                }
-                                </tbody>
-                            </table>
+    }
+    return (
+        <div className={"h-[777px] w-[90%] flex justify-center"}>
+            <div className={"flex w-[80%] h-fit p-4"}>
+                <div className={"flex flex-col w-full justify-center mt-5 p-5 pb-10 bg-gray-100 rounded-xl"}>
+                    <div className={"flex justify-center w-full pt-10"}>
+                        <p className={"font-bold text-3xl"}>Панель Администратора</p>
+                    </div>
+                    <div className={"flex flex-col w-80% h-fit mt-10 border-2 border-solid border-gray-200"}>
+                        <div className={"flex flex-row justify-between p-4 text-2xl font-medium border-b-gray-300 border-solid border-b-2"}>
+                            <p>Управление инцидентами</p>
+                            <Filter setFilter={setFilter}/>
+                        </div>
+                        <div className={"flex flex-row w-full justify-between"}>
+
+                            <div className={"overflow-auto"}>
+                                <table className="min-w-full border-collapse border border-gray-200">
+                                    <thead>
+                                    <tr className="bg-gray-100">
+                                        <th className="border border-gray-200 px-4 py-2 text-left max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">ID</th>
+                                        <th className="border border-gray-200 px-4 py-2 text-left">Тип</th>
+                                        <th className="border border-gray-200 px-4 py-2 text-left">Местоположение</th>
+                                        <th className="border border-gray-200 px-4 py-2 text-left">Описание</th>
+                                        <th className="border border-gray-200 px-4 py-2 text-left">Время</th>
+                                        <th className="border border-gray-200 px-4 py-2 text-left">Статус</th>
+                                        <th className="border border-gray-200 px-4 py-2 text-left">Действия</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        filteredIncidents.map(incident =>
+                                            <tr className="hover:bg-gray-50">
+                                                <td className="border border-gray-200 px-4 py-2">{incident.id}</td>
+                                                <td className="border border-gray-200 px-4 py-2">{incident.type}</td>
+                                                <td className="border border-gray-200 px-4 py-2 max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">{incident.place}</td>
+                                                <td className="border border-gray-200 px-4 py-2">{incident.description}</td>
+                                                <td className="border border-gray-200 px-4 py-2">{incident.time}</td>
+                                                <td className="border border-gray-200 px-4 py-2"><Status status={incident.status}/></td>
+                                                <td className="border border-gray-200 px-4 py-2"><Action action={incident.action}/></td>
+                                            </tr>
+                                        )
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

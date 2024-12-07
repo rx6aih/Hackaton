@@ -8,6 +8,7 @@ import Home from "../pages/Home.jsx";
 import Report from "../pages/Report.jsx";
 import Analytic from "../pages/Analytic.jsx";
 import Admin from "../pages/Admin.jsx";
+import HomeUser from "../pages/HomeUser.jsx";
 const AppRouter = () => {
     const {isAuthorized, setIsAuthorized} = useContext(AuthContext);
     return (
@@ -22,8 +23,8 @@ const AppRouter = () => {
             :<Routes>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/home" element={<Home/>}/>
-                <Route path="*" element={<Home/>}/>
+                <Route path="/home" element={<HomeUser/>}/>
+                <Route path="*" element={<HomeUser/>}/>
             </Routes>
 
     );

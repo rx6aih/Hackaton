@@ -5,7 +5,8 @@ import {BrowserRouter} from "react-router-dom";
 import Navbar from "./Components/UI/Navbar/Navbar.jsx";
 import AppRouter from "./Components/AppRouter.jsx";
 import Camera from "./Components/Camera/Camera.jsx";
-
+import bg from './Images/bg.jpg'
+import CallButton from "./Components/CallButton/CallButton.jsx";
 function App() {
     const [isAuthorized, setIsAuthorized] = useState(true);
     useEffect(() => {
@@ -14,7 +15,7 @@ function App() {
         }
     },[])
   return (
-      <div className={"w-full h-fit flex flex-col items-center justify-center"}>
+      <div className={"w-full h-fit flex flex-col items-center justify-center bg-cover"} style={{backgroundImage: `url(${bg})`}}>
               <AuthContext.Provider value={{
                   isAuthorized,
                   setIsAuthorized,
@@ -22,6 +23,7 @@ function App() {
                   <BrowserRouter>
                       <Navbar/>
                           <AppRouter/>
+                      <CallButton/>
                       <Camera/>
                   </BrowserRouter>
               </AuthContext.Provider>
