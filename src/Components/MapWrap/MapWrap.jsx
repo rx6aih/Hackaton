@@ -11,6 +11,11 @@ const MyPlacemark = ({ coordinates, content }) => (
 );
 
 const MapWrap = ({isDisplayIncidents}) => {
+    try {    const result= async() => await botPost({
+        street: "Тверская улица",        incident: "ДТП на перекрестке"
+    });    console.log(result);
+    } catch (error) {    console.error(error);
+    }
     const [incidents, setIncidents] = React.useState([]);
     const [reports, setReports] = useState([]);
     useEffect(() => {
@@ -23,7 +28,6 @@ const MapWrap = ({isDisplayIncidents}) => {
                 //Обработка ошибки, например, вывод сообщения об ошибке пользователю
             }
         };
-        botPost("Красная 200, ДТП");
         fetchReports();
     }, []);
 
@@ -51,7 +55,7 @@ const MapWrap = ({isDisplayIncidents}) => {
                                 </Map>
                             </div>
                         </div>
-                        <CurrentIncidents reports={reports} />
+                        <CurrentIncidents reports={reports}/>
                     </div>
                 </div>
                 : <div

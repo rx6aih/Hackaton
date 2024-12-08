@@ -11,7 +11,7 @@ const Analytic = () => {
         {region:"Тест регион",avgLoad:"30",avgSpeed:"40",incident:"Затор"},
         {region:"Тест регион",avgLoad:"30",avgSpeed:"40",incident:"Затор"},
     ])
-    const [currentDate, setCurrentDate] = useState("");
+    const [currentDate, setCurrentDate] = useState("Sun, 08 Dec 202");
     const stats = [
         {date: "Sun, 02 Dec 202",data: [10, 3, 1, 8, 5, 2, 9, 4, 7, 6, 10, 2, 8, 1, 5, 9, 4, 7, 3, 6, 1, 10, 2, 8]},
         {date: "Mon, 03 Dec 202",data: [7, 1, 6, 3, 10, 2, 9, 5, 8, 4, 7, 1, 6, 3, 10, 2, 9, 5, 8, 4, 7, 1, 6, 3]},
@@ -36,12 +36,17 @@ const Analytic = () => {
                                 id: 'barCategories',
                                 data: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",],
                                 scaleType: 'band',
+                                label: "Время"
                             },
                         ]}
+                        yAxis={
+                            [{id: 'time', label:"Баллы"}]
+                        }
                         series={[
                             {
                                 data: filteredStats ? filteredStats : []
                             },
+
                         ]}
                         width={900}
                         height={500}

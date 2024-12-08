@@ -13,7 +13,6 @@ export const reportGet = async() =>{
         const response = await axios.get(url);
         return response.data;
     } catch (error) {
-        console.log(error);
         return testReports;
     }
 }
@@ -61,13 +60,22 @@ export const placePost = async(title) =>{
 }
 
 //BOT
-export const botPost = async(title) =>{
-    const url = "https://traffic-incident-responder-notebookkaggle2.replit.app";
-    try{
-        const response = await axios.post(url,title);
-        return response.data;
+export const botPost = async (data) => {    const url = "https://traffic-incident-responder-notebookkaggle2.replit.app/api/incident";
+    console.log('Отправка запроса:', data);
+    try {
+        const response = await axios({
+        method: 'post', url: url,
+        data: {street: data.street,incident: data.incident},
+        headers: { 'Content-Type': 'application/json'},
+        withCredentials: false,
+        crossDomain: true });
+        console.log('Получен ответ:', response.data);
+
+        if (response.data.error) {
+            console.log(response.data.error);
+        }
+        return response.data.result;
     } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
+        console.error('Ошибка:', error);
+   }
+};

@@ -27,7 +27,7 @@ const Report = ({height}) => {
     }, []);
 
     const createReport = (newReport) => {
-        var response = reportPost(report);
+        let response = reportPost(report);
         console.log(response);
     }
     const addReport = (e) => {

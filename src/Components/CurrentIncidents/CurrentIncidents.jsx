@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Chat from "../Chat/Chat.jsx";
 
-const CurrentIncidents = ({reports}) => {
+const CurrentIncidents = ({reports, chatMessage}) => {
     const [chatAddress, setChatAddress] = useState("");
 
     const addInChat = (title) =>{
