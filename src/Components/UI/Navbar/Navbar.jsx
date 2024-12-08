@@ -35,6 +35,9 @@ const Navbar = function(){
                         <CoolButton bg={bg} width={"125"}>
                             <CoolLink linkTo={"admin"} title={"Панель"}/>
                         </CoolButton>
+                        <CoolButton bg={bg} width={"125"}>
+                            <CoolLink linkTo={"cameras"} title={"Камеры"}/>
+                        </CoolButton>
                     </div>
                     <CoolButton bg={bg} width={"125"} onClick={logout}>Выйти</CoolButton>
                 </div>

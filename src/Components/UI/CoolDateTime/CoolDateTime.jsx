@@ -3,11 +3,14 @@ import {DateCalendar, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 
-const CoolDateTime = ({value,setValue}) => {
+const CoolDateTime = ({onChange}) => {
+    const changeHandler = newValue => {
+        onChange(newValue.toString().substr(0,15));
+    }
     return (
         <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
+                        <DateCalendar onChange={(newValue) => changeHandler(newValue)} />
             </LocalizationProvider>
         </div>
     );

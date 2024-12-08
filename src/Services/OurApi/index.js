@@ -20,7 +20,7 @@ export const reportGet = async() =>{
 export const reportPost = async(report) =>{
     const url =  "http://localhost:8000/api/report-incidents/";
     try{
-        const response = await axios.get(url,report);
+        const response = await axios.post(url,report);
         return response.data;
     } catch(err){
         console.log(err);
@@ -55,6 +55,18 @@ export const placePost = async(title) =>{
         const response = await axios.post(url,title);
         return response.data;
     } catch (error){
+        console.error(error);
+        return [];
+    }
+}
+
+//BOT
+export const botPost = async(title) =>{
+    const url = "https://traffic-incident-responder-notebookkaggle2.replit.app";
+    try{
+        const response = await axios.post(url,title);
+        return response.data;
+    } catch (error) {
         console.error(error);
         return [];
     }

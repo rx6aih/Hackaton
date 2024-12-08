@@ -9,6 +9,7 @@ import Report from "../pages/Report.jsx";
 import Analytic from "../pages/Analytic.jsx";
 import Admin from "../pages/Admin.jsx";
 import HomeUser from "../pages/HomeUser.jsx";
+import Cameras from "../pages/Cameras.jsx";
 const AppRouter = () => {
     const {isAuthorized, setIsAuthorized} = useContext(AuthContext);
     return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
                 <Route path={"/report"} element={<Report/>}/>
                 <Route path={"/analytic"} element={<Analytic/>}/>
                 <Route path={"/admin"} element={<Admin/>}/>
+                <Route path={"/cameras"} element={<Cameras/>}/>
                 <Route path="*" element={<Home/>}/>
             </Routes>
             :<Routes>

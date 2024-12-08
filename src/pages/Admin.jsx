@@ -6,24 +6,24 @@ import Filter from "../Components/Filter/Filter.jsx";
 
 const Admin = () => {
     const [incidents, setIncidents] = React.useState([
-        {id:"1",type:"ДТП",place:"ул. Красная",
-            description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
-            time:" 06.12.2024 13:11", status:true, action:false},
-        {id:"2",type:"ДТП",place:"ул. Красная",
-            description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
-            time:" 06.12.2024 13:11", status:false, action:true},
-        {id:"13",type:"ДТП",place:"ул. Красная",
-            description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
-            time:" 06.12.2024 13:11", status:true, action:false},
-        {id:"4",type:"ДТП",place:"ул. Красная",
-            description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
-            time:" 06.12.2024 13:11", status:false, action:true},
-        {id:"5",type:"ДТП",place:"ул. Красная",
-            description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
-            time:" 06.12.2024 13:11", status:true, action:false},
-        {id:"6",type:"ДТП",place:"ул. Красная",
-            description:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
-            time:" 06.12.2024 13:11", status:false, action:true},
+        {id:"1",title:"ДТП",location:"ул. Красная",
+            text:" Автоматически оAAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAsбнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
+            creature:" 06.12.2024 13:11", status:true, action:false},
+        {id:"2",title:"ДТП",location:"ул. Красная",
+            text:" Ав Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
+            creature:" 06.12.2024 13:11", status:false, action:true},
+        {id:"13",title:"ДТП",location:"ул. Красная",
+            text:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
+            creature:" 06.12.2024 13:11", status:true, action:false},
+        {id:"4",title:"ДТП",location:"ул. Красная",
+            text:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
+            creature:" 06.12.2024 13:11", status:false, action:true},
+        {id:"5",title:"ДТП",location:"ул. Красная",
+            text:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
+            creature:" 06.12.2024 13:11", status:true, action:false},
+        {id:"6",title:"ДТП",location:"ул. Красная",
+            text:" Автоматически обнаружен затор. Уровень загрузки: 4/10. Средняя скорость: 20 км/ч",
+            creature:" 06.12.2024 13:11", status:false, action:true},
     ]);
     const [filter, setFilter] = useState(1);
     const filteredIncidents = useIncidents(filter,incidents);
@@ -67,13 +67,13 @@ const Admin = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        filteredIncidents.map(incident =>
-                                            <tr className="hover:bg-gray-50">
-                                                <td className="border border-gray-200 px-4 py-2">{incident.id}</td>
-                                                <td className="border border-gray-200 px-4 py-2">{incident.type}</td>
-                                                <td className="border border-gray-200 px-4 py-2 max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">{incident.place}</td>
-                                                <td className="border border-gray-200 px-4 py-2">{incident.description}</td>
-                                                <td className="border border-gray-200 px-4 py-2">{incident.time}</td>
+                                        filteredIncidents.map((incident, index) =>
+                                            <tr className="hover:bg-gray-50" key={incident.id}>
+                                                <td className="border border-gray-200 px-4 py-2">{index + 1}</td>
+                                                <td className="border border-gray-200 px-4 py-2">{incident.title}</td>
+                                                <td className="border border-gray-200 px-4 py-2 max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap">{incident.location}</td>
+                                                <td className="border border-gray-200 px-4 py-2 max-w-[600px]">{incident.text}</td>
+                                                <td className="border border-gray-200 px-4 py-2">{incident.creature}</td>
                                                 <td className="border border-gray-200 px-4 py-2"><Status status={incident.status}/></td>
                                                 <td className="border border-gray-200 px-4 py-2"><Action action={incident.action} onClick={() =>{changeStatus(incident)}}/></td>
                                             </tr>

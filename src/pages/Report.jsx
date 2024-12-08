@@ -44,6 +44,7 @@ const Report = ({height}) => {
         console.log(response);
     }
     const addPlace = (e) => {
+        e.preventDefault();
         const newPlace = {
             ...place,
         }
@@ -70,7 +71,7 @@ const Report = ({height}) => {
                                      onChange={e => {setPlace({...place,title:e.target.value})}}/>
                         </div>
                         <div className={"flex mt-5 justify-center items-center"}>
-                            <CoolButton children={"Добавить"} onClick={addPlace}/>
+                            <CoolButton children={"Добавить"} onClick={e => {addPlace(e)}}/>
                         </div>
                     </div>
                 </div>

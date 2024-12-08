@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {YMaps, Map, TrafficControl} from '@pbe/react-yandex-maps';
+import {YMaps, Map, TrafficControl, Placemark} from '@pbe/react-yandex-maps';
 import Chat from "../Chat/Chat.jsx";
-import {reportGet} from "../../Services/OurApi/index.js";
+import {botPost, reportGet} from "../../Services/OurApi/index.js";
 import report from "../../pages/Report.jsx";
 import Report from "../../pages/Report.jsx";
 import CurrentIncidents from "../CurrentIncidents/CurrentIncidents.jsx";
+
+const MyPlacemark = ({ coordinates, content }) => (
+    <Placemark geometry={coordinates} properties={{ balloonContent: content }} />
+);
 
 const MapWrap = ({isDisplayIncidents}) => {
     const [incidents, setIncidents] = React.useState([]);
@@ -19,10 +23,16 @@ const MapWrap = ({isDisplayIncidents}) => {
                 //Обработка ошибки, например, вывод сообщения об ошибке пользователю
             }
         };
-
+        botPost("Красная 200, ДТП");
         fetchReports();
     }, []);
 
+
+    const markers = [
+        { coordinates: [45.011682, 38.991977], content: 'Marker 1'},
+        { coordinates: [45.044957, 38.983289], content: 'Marker 2'},
+        { coordinates: [45.016467, 38.956675], content: 'Marker 3'},
+    ];
 
     return (
         <YMaps>
@@ -35,6 +45,9 @@ const MapWrap = ({isDisplayIncidents}) => {
                             <div className={"border-2 border-solid border-gray-300 w-[100%] h-[85%] rounded-md pl-1"}>
                                 <Map defaultState={{center: [45.02, 38.95], zoom: 10}} height={"500px"} width={"700px"}>
                                     <TrafficControl options={{float: "right"}}/>
+                                    {markers.map((marker, index) => (
+                                        <MyPlacemark key={index} coordinates={marker.coordinates} content={marker.content} />
+                                    ))}
                                 </Map>
                             </div>
                         </div>
@@ -49,6 +62,9 @@ const MapWrap = ({isDisplayIncidents}) => {
                             <div className={"border-2 border-solid border-gray-300 w-[100%] h-[54%] rounded-md pl-1"}>
                                 <Map defaultState={{center: [45.02, 38.95], zoom: 10}} height={"500px"} width={"700px"}>
                                     <TrafficControl options={{float: "right"}}/>
+                                    {markers.map((marker, index) => (
+                                        <MyPlacemark key={index} coordinates={marker.coordinates} content={marker.content} />
+                                    ))}
                                 </Map>
                             </div>
                         </div>
