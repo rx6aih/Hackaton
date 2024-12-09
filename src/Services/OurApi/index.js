@@ -69,7 +69,7 @@ export const botPost = async (data) => {    const url = "https://traffic-inciden
         headers: { 'Content-Type': 'application/json'},
         withCredentials: false,
         crossDomain: true });
-        console.log('Получен ответ:', response.data);
+        console.log('Получен ответ:');
 
         if (response.data.error) {
             console.log(response.data.error);
